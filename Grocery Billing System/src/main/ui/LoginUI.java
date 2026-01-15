@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.*;
 import javax.swing.*;
+import service.AuthService;
 
 public class LoginUI extends JFrame {
 
@@ -42,11 +43,29 @@ public class LoginUI extends JFrame {
         form.add(loginBtn);
 
         loginBtn.addActionListener(e -> {
+
+            String user = username.getText();
+            String pass = new String(password.getPassword());
+
+            String role = AuthService.login(user, pass);
+
+            if (role == null) {
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Invalid Username or Password",
+                    "Login Failed",
+                    JOptionPane.ERROR_MESSAGE
+                );
+                return;
+            }
+
             dispose();
-            if(username.getText().equalsIgnoreCase("admin"))
+
+            if (role.equals("ADMIN")) {
                 new AdminDashboard();
-            else
+            } else {
                 new CashierDashboard();
+            }
         });
 
         main.add(header, BorderLayout.NORTH);

@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run TestDB",
+      "request": "launch",
+      "mainClass": "TestDB",
+      "classPaths": [
+        "${workspaceFolder}/bin",
+        "${workspaceFolder}/lib/mysql-connector-j-9.5.0.jar"
+      ]
+    }
+  ]
+}
